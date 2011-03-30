@@ -1,0 +1,51 @@
+int cpu_think(PuyoBoxID id)
+機能：
+	CPU処理を行う関数
+返却値：
+	CPU_EVENT_MOVE_DOWN		下に移動する(CLEARするまで移動し続ける)
+	CPU_EVENT_MOVE_LEFT		左に移動する(CLEARするまで移動し続ける)
+	CPU_EVENT_MOVE_RIGHT	右に移動する(CLEARするまで移動し続ける)
+	CPU_EVENT_ROTATE_LEFT	左に旋回する
+	CPU_EVENT_ROTATE_RIGHT	右に旋回する
+	CPU_EVENT_CLEAR			入力を初期化する
+
+unsigned char get_status(PuyoBoxID id)
+機能：
+	現在の状態を返す関数
+返却値：
+	ST_NORMAL				通常状態(操作可能)
+	ST_CHAIN				連鎖状態(操作不可能)
+	ST_FALLING				落下ぷよの落下状態(操作不可能)
+
+PuyoColor get_puyo(PuyoBoxID id, int x, int y)
+機能：
+	(x,y)座標のぷよの色を返す関数
+返却値：
+	PUYO_EMPTY				空
+	PUYO_RED				赤ぷよ
+	PUYO_BLUE				青ぷよ
+	PUYO_GREEN				緑ぷよ
+	PUYO_PURPLE				紫ぷよ
+	PUYO_YELLOW				黄色ぷよ
+	PUYO_OBSTACLE			おじゃまぷよ
+	PUYO_WALL				移動不可
+
+const ActivePuyo* get_act_puyo(PuyoBoxID id)
+機能：
+	現在操作中の組ぷよを返す関数
+返却値：
+	組ぷよ
+使用例：
+	const ActivePuyo* act_puyo = get_act_puyo(id);
+	act_puyo[0]		組ぷよの中心にあるぷよ
+	act_puyo[1]		組ぷよの外側にあるぷよ
+
+const PuyoColor* get_next_puyo(PuyoBoxID id)
+機能：
+	次の組ぷよの色を返す関数
+返却値：
+	組ぷよの色
+使用例：
+	const PuyoColor* next_puyo = get_next_puyo(id);
+	next_puyo[0]		組ぷよの中心にあるぷよ(上)
+	next_puyo[1]		組ぷよの外側にあるぷよ(下)
